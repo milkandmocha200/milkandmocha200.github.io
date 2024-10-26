@@ -19,13 +19,21 @@
 
     <!-- JavaScript to show the correct image based on the time -->
     <script>
-        const hour = new Date().getHours();
-        if (hour >= 6 && hour < 12) {
-            document.getElementById('morning').style.display = 'block';
-        } else if (hour >= 12 && hour < 18) {
-            document.getElementById('afternoon').style.display = 'block';
-        } else {
-            document.getElementById('evening').style.display = 'block';
+        <script>
+    const hour = new Date().getHours();
+
+    if (hour >= 6 && hour < 12) {
+        // Show morning bear image (6 AM to 12 PM)
+        document.getElementById('morning').style.display = 'block';
+    } else if (hour >= 12 && hour < 18) {
+        // Show afternoon bear image (12 PM to 6 PM)
+        document.getElementById('afternoon').style.display = 'block';
+    } else {
+        // Show evening bear image (6 PM to 6 AM)
+        document.getElementById('evening').style.display = 'block';
+    }
+</script>
+
         }
     </script>
 </body>
