@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Bear Website</title>
     <style>
-        /* Image resizing for all bear images */
+        /* Styling to resize and initially hide all bear images */
         #time-based-image img {
             width: 300px;
             height: auto;
-            display: none; /* Hide all images initially */
+            display: none; /* All images are hidden initially */
         }
     </style>
 </head>
@@ -17,7 +17,7 @@
     <h1>Welcome to My Bear Website!</h1>
     <p>This site shows different bear images based on the time of day!</p>
 
-    <!-- Container for the time-based image -->
+    <!-- Container holding the images for each time of day -->
     <div id="time-based-image">
         <img src="morning_bear.webp" alt="Morning Bear" id="morning">
         <img src="afternoon_bear.webp" alt="Afternoon Bear" id="afternoon">
@@ -26,20 +26,20 @@
 
     <!-- JavaScript to display the correct image based on the time of day -->
     <script>
-        const hour = new Date().getHours();
-        console.log("Current hour:", hour); // For debugging, check the current hour
+        const hour = new Date().getHours(); // Get the current hour
+        console.log("Current hour:", hour); // For debugging, check the current hour in console
 
+        // Display the appropriate bear image based on the hour
         if (hour >= 6 && hour < 12) {
-            // Show morning bear image (6 AM to 12 PM)
+            // Morning bear image (6 AM to 12 PM)
             document.getElementById('morning').style.display = 'block';
         } else if (hour >= 12 && hour < 18) {
-            // Show afternoon bear image (12 PM to 6 PM)
+            // Afternoon bear image (12 PM to 6 PM)
             document.getElementById('afternoon').style.display = 'block';
         } else {
-            // Show evening bear image (6 PM to 6 AM)
+            // Evening bear image (6 PM to 6 AM)
             document.getElementById('evening').style.display = 'block';
         }
     </script>
 </body>
 </html>
-
