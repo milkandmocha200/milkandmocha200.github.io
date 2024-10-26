@@ -5,49 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Bear Website</title>
     <style>
-        /* Styling to resize and initially hide all bear images */
-        #time-based-image img {
+        /* Styling to resize and initially hide all bear images and text */
+        #time-based-image img, #time-based-image p {
             width: 300px;
             height: auto;
-            display: none; /* All images are hidden initially */
+            display: none; /* All images and text are hidden initially */
         }
     </style>
 </head>
 <body>
     <h1>Welcome to My Bear Website!</h1>
-    <p>This site shows different bear images based on the time of day in Pacific Time!</p>
+    <p>This site shows different bear images and greetings based on the time of day in Pacific Time!</p>
 
-    <!-- Container holding the images for each time of day -->
+    <!-- Container holding the images and text for each time of day -->
     <div id="time-based-image">
         <img src="morning_bear.webp" alt="Morning Bear" id="morning">
+        <p id="morning-text">Good Morning!</p>
+
         <img src="afternoon_bear.webp" alt="Afternoon Bear" id="afternoon">
+        <p id="afternoon-text">Good Afternoon!</p>
+
         <img src="evening_bear.webp" alt="Evening Bear" id="evening">
+        <p id="evening-text">Good Evening!</p>
     </div>
 
-    <!-- JavaScript to display the correct image based on the local hour with error handling -->
+    <!-- JavaScript to display the correct image and greeting text based on the local hour with error handling -->
     <script>
         try {
             // Get the current hour
             const hour = new Date().getHours();
 
-            // Hide all images initially
+            // Hide all images and text initially
             document.getElementById('morning').style.display = 'none';
+            document.getElementById('morning-text').style.display = 'none';
             document.getElementById('afternoon').style.display = 'none';
+            document.getElementById('afternoon-text').style.display = 'none';
             document.getElementById('evening').style.display = 'none';
+            document.getElementById('evening-text').style.display = 'none';
 
-            // Display the appropriate bear image based on the time of day
+            // Display the appropriate bear image and greeting based on the time of day
             if (hour >= 6 && hour < 12) {
                 document.getElementById('morning').style.display = 'block'; // Morning Bear
+                document.getElementById('morning-text').style.display = 'block';
             } else if (hour >= 12 && hour < 18) {
                 document.getElementById('afternoon').style.display = 'block'; // Afternoon Bear
+                document.getElementById('afternoon-text').style.display = 'block';
             } else {
                 document.getElementById('evening').style.display = 'block'; // Evening Bear
+                document.getElementById('evening-text').style.display = 'block';
             }
         } catch (error) {
             console.error("An error occurred:", error);
 
-            // Fallback to ensure an image is displayed
-            document.getElementById('morning').style.display = 'block'; // Default to Morning Bear
+            // Fallback to ensure an image and text are displayed
+            document.getElementById('morning').style.display = 'block';
+            document.getElementById('morning-text').style.display = 'block';
         }
     </script>
 </body>
