@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bear Website</title>
+</head>
+<body>
+    <h1>Welcome to My Bear Website!</h1>
+    <p>This site shows different bear images based on the time of day!</p>
+
+    <!-- Container for the time-based image -->
+    <div id="time-based-image">
+        <img src="morning_bear.png" alt="Morning Bear" id="morning" style="display: none;">
+        <img src="afternoon_bear.png" alt="Afternoon Bear" id="afternoon" style="display: none;">
+        <img src="evening_bear.png" alt="Evening Bear" id="evening" style="display: none;">
+    </div>
+
+    <!-- JavaScript to show the correct image based on the time -->
+    <script>
+        const hour = new Date().getHours();
+        if (hour >= 6 && hour < 12) {
+            document.getElementById('morning').style.display = 'block';
+        } else if (hour >= 12 && hour < 18) {
+            document.getElementById('afternoon').style.display = 'block';
+        } else {
+            document.getElementById('evening').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
