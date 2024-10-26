@@ -17,41 +17,47 @@
     <h1>Welcome to My Bear Website!</h1>
     <p>This site shows different bear images based on the time of day in Pacific Time!</p>
 
-    <!-- Container holding the images for each time of day -->
+    <!-- Container holding the images and text for each time of day -->
     <div id="time-based-image">
         <img src="morning_bear.webp" alt="Morning Bear" id="morning">
+        <p id="morning-text" style="display: none;">Good Morning! It's the Morning Bear!</p>
+
         <img src="afternoon_bear.webp" alt="Afternoon Bear" id="afternoon">
+        <p id="afternoon-text" style="display: none;">Good Afternoon! It's the Afternoon Bear!</p>
+
         <img src="evening_bear.webp" alt="Evening Bear" id="evening">
+        <p id="evening-text" style="display: none;">Good Evening! It's the Evening Bear!</p>
     </div>
 
-    <!-- JavaScript to display the correct image based on the Pacific Time zone -->
+    <!-- JavaScript to display the correct image and text based on the local hour -->
     <script>
-        function showBearImageBasedOnPacificTime() {
+        function showBearImageBasedOnTime() {
             const currentDate = new Date();
             const hour = currentDate.getHours(); // Detects the local hour
 
-            console.log("Current detected hour:", hour); // Debugging: Check the detected hour
-
-            // Hide all images initially
+            // Hide all images and text initially
             document.getElementById('morning').style.display = 'none';
+            document.getElementById('morning-text').style.display = 'none';
             document.getElementById('afternoon').style.display = 'none';
+            document.getElementById('afternoon-text').style.display = 'none';
             document.getElementById('evening').style.display = 'none';
+            document.getElementById('evening-text').style.display = 'none';
 
-            // Display one image based on the time of day
+            // Display one image and text based on the time of day
             if (hour >= 6 && hour < 12) {
-                document.getElementById('morning').style.display = 'block'; // Morning Bear
-                console.log("Displaying Morning Bear");
+                document.getElementById('morning').style.display = 'block';
+                document.getElementById('morning-text').style.display = 'block';
             } else if (hour >= 12 && hour < 18) {
-                document.getElementById('afternoon').style.display = 'block'; // Afternoon Bear
-                console.log("Displaying Afternoon Bear");
+                document.getElementById('afternoon').style.display = 'block';
+                document.getElementById('afternoon-text').style.display = 'block';
             } else {
-                document.getElementById('evening').style.display = 'block'; // Evening Bear
-                console.log("Displaying Evening Bear");
+                document.getElementById('evening').style.display = 'block';
+                document.getElementById('evening-text').style.display = 'block';
             }
         }
 
-        // Call the function to show the appropriate bear image
-        showBearImageBasedOnPacificTime();
+        // Call the function to show the appropriate bear image and text
+        showBearImageBasedOnTime();
     </script>
 </body>
 </html>
