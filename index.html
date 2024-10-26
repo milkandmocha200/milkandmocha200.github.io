@@ -28,7 +28,9 @@
     <script>
         function showBearImageBasedOnPacificTime() {
             const currentDate = new Date();
-            const hour = currentDate.getHours();
+            const hour = currentDate.getHours(); // Detects the local hour
+
+            console.log("Current detected hour:", hour); // Debugging: Check the detected hour
 
             // Hide all images initially
             document.getElementById('morning').style.display = 'none';
