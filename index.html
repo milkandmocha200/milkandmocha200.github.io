@@ -15,7 +15,7 @@
 </head>
 <body>
     <h1>Welcome to My Bear Website!</h1>
-    <p>This site shows different bear images based on the time of day!</p>
+    <p>This site shows different bear images based on the time of day in Pacific Time!</p>
 
     <!-- Container holding the images for each time of day -->
     <div id="time-based-image">
@@ -24,21 +24,22 @@
         <img src="evening_bear.webp" alt="Evening Bear" id="evening">
     </div>
 
-    <!-- JavaScript to display the correct image based on the time of day -->
+    <!-- JavaScript to display the correct image based on the Pacific Time zone -->
     <script>
-        const hour = new Date().getHours(); // Get the current hour
-        console.log("Current hour:", hour); // For debugging, check the current hour in console
+        // Calculate the current hour in Pacific Time (UTC-8 or UTC-7, depending on Daylight Savings)
+        const currentDate = new Date();
+        const utcHour = currentDate.getUTCHours(); // Get the hour in UTC
+        const pacificHour = (utcHour - 7 + 24) % 24; // Convert UTC to PDT (UTC-7). If it's PST (UTC-8), change -7 to -8.
+        
+        console.log("Detected Pacific hour:", pacificHour, "Current UTC hour:", utcHour);
 
-        // Display the appropriate bear image based on the hour
-        if (hour >= 6 && hour < 12) {
-            // Morning bear image (6 AM to 12 PM)
-            document.getElementById('morning').style.display = 'block';
-        } else if (hour >= 12 && hour < 18) {
-            // Afternoon bear image (12 PM to 6 PM)
-            document.getElementById('afternoon').style.display = 'block';
+        // Logic to display the appropriate image based on Pacific Time hour
+        if (pacificHour >= 6 && pacificHour < 12) {
+            document.getElementById('morning').style.display = 'block'; // Morning Bear
+        } else if (pacificHour >= 12 && pacificHour < 18) {
+            document.getElementById('afternoon').style.display = 'block'; // Afternoon Bear
         } else {
-            // Evening bear image (6 PM to 6 AM)
-            document.getElementById('evening').style.display = 'block';
+            document.getElementById('evening').style.display = 'block'; // Evening Bear
         }
     </script>
 </body>
