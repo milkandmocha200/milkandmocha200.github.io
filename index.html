@@ -28,39 +28,23 @@
     <script>
         function showBearImageBasedOnPacificTime() {
             const currentDate = new Date();
-            const utcHour = currentDate.getUTCHours();
+            const hour = currentDate.getHours();
 
-            // Detect Daylight Saving Time (DST) and set Pacific offset accordingly
-            const isDaylightSaving = currentDate.getMonth() >= 2 && currentDate.getMonth() <= 10;
-            const pacificOffset = isDaylightSaving ? -7 : -8;
-            const pacificHour = (utcHour + pacificOffset + 24) % 24;
+            // Hide all images initially
+            document.getElementById('morning').style.display = 'none';
+            document.getElementById('afternoon').style.display = 'none';
+            document.getElementById('evening').style.display = 'none';
 
-            // Debugging information
-            console.log("Current UTC hour:", utcHour);
-            console.log("Daylight Saving in effect:", isDaylightSaving);
-            console.log("Detected Pacific offset:", pacificOffset);
-            console.log("Calculated Pacific hour:", pacificHour);
-
-            // Display the correct image based on the time of day
-            let imageDisplayed = false;
-            if (pacificHour >= 6 && pacificHour < 12) {
+            // Display one image based on the time of day
+            if (hour >= 6 && hour < 12) {
                 document.getElementById('morning').style.display = 'block'; // Morning Bear
                 console.log("Displaying Morning Bear");
-                imageDisplayed = true;
-            } else if (pacificHour >= 12 && pacificHour < 18) {
+            } else if (hour >= 12 && hour < 18) {
                 document.getElementById('afternoon').style.display = 'block'; // Afternoon Bear
                 console.log("Displaying Afternoon Bear");
-                imageDisplayed = true;
-            } else if ((pacificHour >= 18 && pacificHour < 24) || (pacificHour >= 0 && pacificHour < 6)) {
+            } else {
                 document.getElementById('evening').style.display = 'block'; // Evening Bear
                 console.log("Displaying Evening Bear");
-                imageDisplayed = true;
-            }
-
-            // Fallback in case no image displays
-            if (!imageDisplayed) {
-                document.getElementById('morning').style.display = 'block';
-                console.log("Fallback: Displaying Morning Bear");
             }
         }
 
