@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Bear Website</title>
+    <style>
+        /* Image resizing for all bear images */
+        #time-based-image img {
+            width: 300px;
+            height: auto;
+            display: none; /* Hide all images initially */
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to My Bear Website!</h1>
@@ -11,39 +19,27 @@
 
     <!-- Container for the time-based image -->
     <div id="time-based-image">
-     <!-- Morning Bear Image -->
-<img src="morning_bear.webp" alt="Morning Bear" id="morning" style="display: none; width: 300px; height: auto;">
-
-<!-- Afternoon Bear Image -->
-<img src="afternoon_bear.webp" alt="Afternoon Bear" id="afternoon" style="display: none; width: 300px; height: auto;">
-
-<!-- Evening Bear Image -->
-<img src="evening_bear.webp" alt="Evening Bear" id="evening" style="display: none; width: 300px; height: auto;">
-
-
+        <img src="morning_bear.webp" alt="Morning Bear" id="morning">
+        <img src="afternoon_bear.webp" alt="Afternoon Bear" id="afternoon">
+        <img src="evening_bear.webp" alt="Evening Bear" id="evening">
     </div>
 
-    <!-- JavaScript to show the correct image based on the time -->
-   <script>
-    const hour = new Date().getHours();
-    console.log("Current hour:", hour); // This will print the hour in the console for debugging
+    <!-- JavaScript to display the correct image based on the time of day -->
+    <script>
+        const hour = new Date().getHours();
+        console.log("Current hour:", hour); // For debugging, check the current hour
 
-    if (hour >= 6 && hour < 12) {
-        // Show morning bear image (6 AM to 12 PM)
-        document.getElementById('morning').style.display = 'block';
-    } else if (hour >= 12 && hour < 18) {
-        // Show afternoon bear image (12 PM to 6 PM)
-        document.getElementById('afternoon').style.display = 'block';
-    } else {
-        // Show evening bear image (6 PM to 6 AM)
-        document.getElementById('evening').style.display = 'block';
-    }
-</script>
-
-
-
+        if (hour >= 6 && hour < 12) {
+            // Show morning bear image (6 AM to 12 PM)
+            document.getElementById('morning').style.display = 'block';
+        } else if (hour >= 12 && hour < 18) {
+            // Show afternoon bear image (12 PM to 6 PM)
+            document.getElementById('afternoon').style.display = 'block';
+        } else {
+            // Show evening bear image (6 PM to 6 AM)
+            document.getElementById('evening').style.display = 'block';
         }
     </script>
 </body>
-    
 </html>
+
