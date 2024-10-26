@@ -26,15 +26,14 @@
 
     <!-- JavaScript to display the correct image based on the Pacific Time zone -->
     <script>
-        // Function to calculate Pacific Time (UTC-7 or UTC-8) and display appropriate image
         function showBearImageBasedOnPacificTime() {
             const currentDate = new Date();
-            const utcHour = currentDate.getUTCHours(); // Get the hour in UTC
+            const utcHour = currentDate.getUTCHours();
 
-            // Adjust for Pacific Time: UTC-7 for daylight saving (March-Nov), UTC-8 otherwise
+            // Detect Daylight Saving Time (DST) and set Pacific offset accordingly
             const isDaylightSaving = currentDate.getMonth() >= 2 && currentDate.getMonth() <= 10;
             const pacificOffset = isDaylightSaving ? -7 : -8;
-            const pacificHour = (utcHour + pacificOffset + 24) % 24; // Calculate Pacific Time hour
+            const pacificHour = (utcHour + pacificOffset + 24) % 24;
 
             // Debugging information
             console.log("Current UTC hour:", utcHour);
@@ -42,13 +41,31 @@
             console.log("Detected Pacific offset:", pacificOffset);
             console.log("Calculated Pacific hour:", pacificHour);
 
-            // Display appropriate bear image based on Pacific Time hour
+            // Display the correct image based on the time of day
+            let imageDisplayed = false;
             if (pacificHour >= 6 && pacificHour < 12) {
                 document.getElementById('morning').style.display = 'block'; // Morning Bear
                 console.log("Displaying Morning Bear");
+                imageDisplayed = true;
             } else if (pacificHour >= 12 && pacificHour < 18) {
                 document.getElementById('afternoon').style.display = 'block'; // Afternoon Bear
                 console.log("Displaying Afternoon Bear");
-            } else {
+                imageDisplayed = true;
+            } else if ((pacificHour >= 18 && pacificHour < 24) || (pacificHour >= 0 && pacificHour < 6)) {
                 document.getElementById('evening').style.display = 'block'; // Evening Bear
-                console.log("
+                console.log("Displaying Evening Bear");
+                imageDisplayed = true;
+            }
+
+            // Fallback in case no image displays
+            if (!imageDisplayed) {
+                document.getElementById('morning').style.display = 'block';
+                console.log("Fallback: Displaying Morning Bear");
+            }
+        }
+
+        // Call the function to show the appropriate bear image
+        showBearImageBasedOnPacificTime();
+    </script>
+</body>
+</html>
